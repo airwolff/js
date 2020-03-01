@@ -1,0 +1,666 @@
+/*********************************************************
+//  Box Shadow
+*********************************************************/
+/* 
+offset-x (how far to push the shadow horizontally from the element), offset-y (how far to push the shadow vertically from the element), blur-radius
+spread-radius 
+color value, in that order. 
+The blur-radius and spread-radius values are optional. 
+*/
+
+.fullCard {
+  width: 245px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 5px;
+  padding: 4px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/*********************************************************
+//  Float
+*********************************************************/
+/* 
+Floating elements are removed from the normal flow of a document and pushed to either the left or right of their containing parent element. It's commonly used with the width property to specify how much horizontal space the floated element requires. 
+*/
+
+/*********************************************************
+//  Z Index
+*********************************************************/
+/* 
+z-index property can specify the order of how elements are stacked
+*/
+
+/*********************************************************
+//  Color
+*********************************************************/
+/* 
+Saturation is the amount of gray in a color. A fully saturated color has no gray in it, and a minimally saturated color is almost completely gray. This is given as a percentage with 100% being fully saturated.
+
+Lightness is the amount of white or black in a color. A percentage is given ranging from 0% (black) to 100% (white), where 50% is the normal color. 
+hsl = hue, saturation, lightness;
+*/
+nav {
+  background-color: hsl(180, 80%, 25%);
+}
+
+/*********************************************************
+//  Gradient
+*********************************************************/
+/* 
+first argument = direction of transition start (it can be stated as a degree,where 90deg makes a vertical gradient and 45deg is angled like a backslash.)
+The following arguments specify the order of colors used in the gradient.
+*/
+div {
+  background: linear-gradient(90deg, red, yellow, #FFCCCC);
+}
+/* 
+Angle = direction of the gradient. 
+Color stops are like width values that mark where a transition takes place, and are given with a percentage or a number of pixels.
+
+Gradient starts with yellow at 0px, blends into 2nd color blue at 40px from the start, . Since the next is also at 40px, the gradient immediately changes to the third green, which blends into the 4th red as that is 80px from the beginning.
+
+For this example, it helps to think about the color stops as pairs where every two colors blend together.
+0px [yellow -- blend -- blue] 40px [green -- blend -- red] 80px
+*/
+div{ 
+  background: repeating-linear-gradient(
+    90deg,
+    yellow 0px,
+    blue 40px,
+    green 40px,
+    red 80px
+  );
+}
+
+/*********************************************************
+//  Transform
+*********************************************************/
+p {
+  transform:scale(2);
+}
+
+p {
+  transform: skewX(24deg) skewY(-10deg);
+}
+
+/* Shapes with CSS */
+/* Crescent Moon */
+.center
+{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 25px 10px 0 0 blue; 
+}
+
+/*********************************************************
+//  CSS architecture problems arise from selector choice and specificity. 
+*********************************************************/
+
+/*********************************************************
+//  CSS Animations
+*********************************************************/
+/* Hover */
+button {
+  border-radius: 5px;
+  color: white;
+  background-color: #0F5897;
+  padding: 5px 10px 8px 10px;
+}
+
+button:hover {
+  animation-name: background-color;
+  animation-duration: 500ms;
+}
+@keyframes background-color {
+  100% {
+    background-color: #4791d0;
+    animation-fill-mode: forwards; /* Keeps it from reverting!*/
+  }
+}
+
+/*  Infinite bouncing ball
+*********************************************************/
+#ball {
+  width: 100px;
+  height: 100px;
+  margin: 50px auto;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(
+    35deg,
+    #ccffff,
+    #ffcccc
+  );
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce{
+  0% {
+    top: 0px;
+  }
+  50% {
+    top: 249px;
+    width: 130px;
+    height: 70px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+/*********************************************************
+//  CSS Variable
+*********************************************************/
+/* Because of cascading, CSS variables are often defined in the :root element.
+/* :root element as a container for your entire HTML document, in the same way that an html element is a container for the body element.
+/* By creating your variables in :root, they will be available throughout the whole web page.
+*********************************************************/
+
+
+/*  A PENGUIN!
+*********************************************************/
+
+/* <style> */
+  .penguin {
+    
+    /* change code below */
+    --penguin-skin: gray;
+    --penguin-belly: white;
+    --penguin-beak: orange;
+    /* change code above */
+    
+    position: relative;
+    margin: auto;
+    display: block;
+    margin-top: 5%;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .penguin-top {
+    top: 10%;
+    left: 25%;
+    background: var(--penguin-skin, gray);
+    width: 50%;
+    height: 45%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .penguin-bottom {
+    top: 40%;
+    left: 23.5%;
+    background: var(--penguin-skin, gray);
+    width: 53%;
+    height: 45%;
+    border-radius: 70% 70% 100% 100%;
+  }
+  
+  .right-hand {
+    top: 0%;
+    left: -5%;
+    background: var(--penguin-skin, gray);
+    width: 30%;
+    height: 60%;
+    border-radius: 30% 30% 120% 30%;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+  
+  .left-hand {
+    top: 0%;
+    left: 75%;
+    background: var(--penguin-skin, gray);
+    width: 30%;
+    height: 60%;
+    border-radius: 30% 30% 30% 120%;
+    transform: rotate(-45deg);
+    z-index: -1;
+  }
+  
+  .right-cheek {
+    top: 15%;
+    left: 35%;
+    background: var(--penguin-belly, white);
+    width: 60%;
+    height: 70%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .left-cheek {
+    top: 15%;
+    left: 5%;
+    background: var(--penguin-belly, white);
+    width: 60%;
+    height: 70%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .belly {
+    top: 60%;
+    left: 2.5%;
+    background: var(--penguin-belly, white);
+    width: 95%;
+    height: 100%;
+    border-radius: 120% 120% 100% 100%;
+  }
+  
+  .right-feet {
+    top: 85%;
+    left: 60%;
+    background: var(--penguin-beak, orange);
+    width: 15%;
+    height: 30%;
+    border-radius: 50% 50% 50% 50%;
+    transform: rotate(-80deg);
+    z-index: -2222;  
+  }
+  
+  .left-feet {
+    top: 85%;
+    left: 25%;
+    background: var(--penguin-beak, orange);
+    width: 15%;
+    height: 30%;
+    border-radius: 50% 50% 50% 50%;
+    transform: rotate(80deg);
+    z-index: -2222;  
+  }
+  
+  .right-eye {
+    top: 45%;
+    left: 60%;
+    background: black;
+    width: 15%;
+    height: 17%;
+    border-radius: 50%; 
+  }
+  
+  .left-eye {
+    top: 45%;
+    left: 25%;
+    background: black;
+    width: 15%;
+    height: 17%;
+    border-radius: 50%;  
+  }
+  
+  .sparkle {
+    top: 25%;
+    left: 15%;
+    background: white;
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;  
+  }
+  
+  .blush-right {
+    top: 65%;
+    left: 15%;
+    background: pink;
+    width: 15%;
+    height: 10%;
+    border-radius: 50%;  
+  }
+  
+  .blush-left {
+    top: 65%;
+    left: 70%;
+    background: pink;
+    width: 15%;
+    height: 10%;
+    border-radius: 50%;  
+  }
+  
+  .beak-top {
+    top: 60%;
+    left: 40%;
+    background: var(--penguin-beak, orange);
+    width: 20%;
+    height: 10%;
+    border-radius: 50%;  
+  }
+  
+  .beak-bottom {
+    top: 65%;
+    left: 42%;
+    background: var(--penguin-beak, orange);
+    width: 16%;
+    height: 10%;
+    border-radius: 50%;  
+  }
+  
+  body {
+    background:#c6faf1;
+  }
+  
+  .penguin * {
+    position: absolute;
+  }
+/* </style>
+<div class="penguin">
+  <div class="penguin-bottom">
+    <div class="right-hand"></div>
+    <div class="left-hand"></div>
+    <div class="right-feet"></div>
+    <div class="left-feet"></div>
+  </div>
+  <div class="penguin-top">
+    <div class="right-cheek"></div>
+    <div class="left-cheek"></div>
+    <div class="belly"></div>
+    <div class="right-eye">
+      <div class="sparkle"></div>
+    </div>
+    <div class="left-eye">
+      <div class="sparkle"></div>
+    </div>
+    <div class="blush-right"></div>
+    <div class="blush-left"></div>
+    <div class="beak-top"></div>
+    <div class="beak-bottom"></div>
+  </div>
+</div> */
+
+:root {
+  --penguin-size: 300px;
+  --penguin-skin: gray;
+  --penguin-belly: white;
+  --penguin-beak: orange;
+}
+
+
+/*  A WAVING PENGUIN!
+*********************************************************/
+
+/* <style> */
+  :root {
+    --penguin-size: 300px;
+    --penguin-skin: gray;
+    --penguin-belly: white;
+    --penguin-beak: orange;
+  }
+  
+  @media (max-width: 350px) {
+    :root {
+      --penguin-size: 200px;
+      --penguin-skin: black;
+    }
+  }
+  
+  .penguin {
+    position: relative;
+    margin: auto;
+    display: block;
+    margin-top: 5%;
+    width: var(--penguin-size, 300px);
+    height: var(--penguin-size, 300px);
+  }
+  
+  .right-cheek {
+    top: 15%;
+    left: 35%;
+    background: var(--penguin-belly, white);
+    width: 60%;
+    height: 70%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .left-cheek {
+    top: 15%;
+    left: 5%;
+    background: var(--penguin-belly, white);
+    width: 60%;
+    height: 70%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .belly {
+    top: 60%;
+    left: 2.5%;
+    background: var(--penguin-belly, white);
+    width: 95%;
+    height: 100%;
+    border-radius: 120% 120% 100% 100%;
+  }
+  
+  .penguin-top {
+    top: 10%;
+    left: 25%;
+    background: var(--penguin-skin, gray);
+    width: 50%;
+    height: 45%;
+    border-radius: 70% 70% 60% 60%;
+  }
+  
+  .penguin-bottom {
+    top: 40%;
+    left: 23.5%;
+    background: var(--penguin-skin, gray);
+    width: 53%;
+    height: 45%;
+    border-radius: 70% 70% 100% 100%;
+  }
+  
+  .right-hand {
+    top: 5%;
+    left: 25%;
+    background: var(--penguin-skin, black);
+    width: 30%;
+    height: 60%;
+    border-radius: 30% 30% 120% 30%;
+    transform: rotate(130deg);
+    z-index: -1;
+    animation-duration: 3s;
+    animation-name: wave;
+    animation-iteration-count: infinite;
+    transform-origin:0% 0%;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes wave {
+      10% {
+        transform: rotate(110deg);
+      }
+      20% {
+        transform: rotate(130deg);
+      }
+      30% {
+        transform: rotate(110deg);
+      } 
+      40% {
+        transform: rotate(130deg);
+      }  
+    }
+  
+  .left-hand {
+    top: 0%;
+    left: 75%;
+    background: var(--penguin-skin, gray);
+    width: 30%;
+    height: 60%;
+    border-radius: 30% 30% 30% 120%;
+    transform: rotate(-45deg);
+    z-index: -1;
+  }
+  
+  .right-feet {
+    top: 85%;
+    left: 60%;
+    background: var(--penguin-beak, orange);
+    width: 15%;
+    height: 30%;
+    border-radius: 50% 50% 50% 50%;
+    transform: rotate(-80deg);
+    z-index: -2222;
+  }
+  
+  .left-feet {
+    top: 85%;
+    left: 25%;
+    background: var(--penguin-beak, orange);
+    width: 15%;
+    height: 30%;
+    border-radius: 50% 50% 50% 50%;
+    transform: rotate(80deg);
+    z-index: -2222;
+  }
+  
+  .right-eye {
+    top: 45%;
+    left: 60%;
+    background: black;
+    width: 15%;
+    height: 17%;
+    border-radius: 50%;
+  }
+  
+  .left-eye {
+    top: 45%;
+    left: 25%;
+    background: black;
+    width: 15%;
+    height: 17%;
+    border-radius: 50%;
+  }
+  
+  .sparkle {
+    top: 25%;
+    left:-23%;
+    background: white;
+    width: 150%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .blush-right {
+    top: 65%;
+    left: 15%;
+    background: pink;
+    width: 15%;
+    height: 10%;
+    border-radius: 50%;
+  }
+  
+  .blush-left {
+    top: 65%;
+    left: 70%;
+    background: pink;
+    width: 15%;
+    height: 10%;
+    border-radius: 50%;
+  }
+  
+  .beak-top {
+    top: 60%;
+    left: 40%;
+    background: var(--penguin-beak, orange);
+    width: 20%;
+    height: 10%;
+    border-radius: 50%;
+  }
+  
+  .beak-bottom {
+    top: 65%;
+    left: 42%;
+    background: var(--penguin-beak, orange);
+    width: 16%;
+    height: 10%;
+    border-radius: 50%;
+  }
+  
+  body {
+    background:#c6faf1;
+  }
+  
+  .penguin * {
+    position: absolute;
+  }
+/* </style>
+<div class="penguin">
+  <div class="penguin-bottom">
+    <div class="right-hand"></div>
+    <div class="left-hand"></div>
+    <div class="right-feet"></div>
+    <div class="left-feet"></div>
+  </div>
+  <div class="penguin-top">
+    <div class="right-cheek"></div>
+    <div class="left-cheek"></div>
+    <div class="belly"></div>
+    <div class="right-eye">
+      <div class="sparkle"></div>
+    </div>
+    <div class="left-eye">
+      <div class="sparkle"></div>
+    </div>
+    <div class="blush-right"></div>
+    <div class="blush-left"></div>
+    <div class="beak-top"></div>
+    <div class="beak-bottom"></div>
+  </div>
+</div> */
+
+/*  Responsive Principles
+*********************************************************/
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+/* 
+
+max-width property of 100% scales the image to fit the width of its container, but the image won't stretch wider than its original width. 
+The display property to block changes the image from an inline element (its default), to a block element on its own line. The height property of auto keeps the original aspect ratio of the ima 
+
+The simplest way to make your images appear "retina" (and optimize them for retina displays) is to define their width and height values as only half of what the original file is.
+
+
+Instead of using em or px to size text, you can use viewport units for responsive typography. Viewport units, like percentages, are relative units, but they are based off different items. Viewport units are relative to the viewport dimensions (width or height) of a device, and percentages are relative to the size of the parent container element.
+
+The four different viewport units are:
+
+vw: 10vw would be 10% of the viewport's width.
+vh: 3vh would be 3% of the viewport's height.
+vmin: 70vmin would be 70% of the viewport's smaller dimension (height vs. width).
+vmax: 100vmax would be 100% of the viewport's bigger dimension (height vs. width).
+*/
+
+/*  Transform
+*********************************************************/
+
+.hand {
+  width: 50%;
+  height: 6px;
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform-origin: 100%;
+}
+
+/* transform-origin: x-offset y-offset z-offset; 
+One-value syntax:
+The value must be a <length>, a <percentage>, or one of the keywords left, center, right, top, and bottom.
+
+Two-value syntax:
+One value must be a <length>, a <percentage>, or one of the keywords left, center, and right.
+The other value must be a <length>, a <percentage>, or one of the keywords top, center, and bottom.
+
+Three-value syntax:
+The first two values are the same as for the two-value syntax.
+The third value must be a <length>. It always represents the Z offset.
+
+*/
+
